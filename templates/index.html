@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/app.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Cupcake API</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <h1 class='text-center'>The Cupcakery</h1>
+
+        <button id="show-cupcakes-button" class='btn btn-info'>
+            <h2>Show me the goods!</h2>
+        </button>
+
+
+    </div>
+    <div class="container">
+        <ul id="cupcakes-list">
+
+        </ul>
+    </div>
+
+    <!-- <div class="container">
+
+        <h1 class="text-center display-3">Cupcake List</h1>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <ul class="list-group">
+                    {% for cupcake in cupcakes %}
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><img
+                            src="{{cupcake.image}}" alt="">{{cupcake.flavor}} -
+                        <button class="delete-cupcake btn-sm btn-danger" data-id="{{cupcake.id}}">X</button></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div> 
+
+    </div> -->
+    <div class="container">
+        <h2>Create a new cupcake!</h2>
+        <form id='new-cupcake-form' action="/api/cupcakes" method="POST">
+            <label for="flavor">Flavor</label>
+            <input name='flavor' id='flavor' type="text">
+            <label for="size">Size</label>
+            <input name='size' id='size' type="text">
+            <label for="rating">Rating</label>
+            <input name='rating' id='rating' type="number" step="0.01">
+            <label for="image">Image</label>
+            <input name='image' id='image' type="text">
+            <button id='submit-btn'>Submit</button>
+        </form>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"
+        integrity="sha256-T/f7Sju1ZfNNfBh7skWn0idlCBcI3RwdLSS4/I7NQKQ=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="static/app.js"></script>
+</body>
+
+</html>

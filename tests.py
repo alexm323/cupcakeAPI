@@ -28,6 +28,13 @@ CUPCAKE_DATA_2 = {
     "image": "http://test.com/cupcake2.jpg"
 }
 
+CUPCAKE_DATA_3 = {
+    "flavor": "UpdateFlavor1",
+    "size": "UpdateSize1",
+    "rating": 1,
+    "image": "http://test.com/cupcake3.jpg"
+}
+
 
 class CupcakeViewsTestCase(TestCase):
     """Tests for views of API."""
@@ -36,7 +43,7 @@ class CupcakeViewsTestCase(TestCase):
         """Make demo data."""
 
         Cupcake.query.delete()
-
+        # Does the double star give it the ability to ask for all cupcake_data stuff?
         cupcake = Cupcake(**CUPCAKE_DATA)
         db.session.add(cupcake)
         db.session.commit()
@@ -107,3 +114,20 @@ class CupcakeViewsTestCase(TestCase):
             })
 
             self.assertEqual(Cupcake.query.count(), 2)
+
+    def test_update_cupcake(self):
+        with app.test_client() as client:
+            url = f"/api/cupcakes/{self.cupcake.id}"
+
+            resp = client.patch(url, json=CUPCAKE_DATA_3)
+            data = resp.json
+
+            self.assertEqual(resp.status_code, 200)
+            # self.assertEqual(data, {
+            #     "cupcake": {
+            #         "flavor": "UpdateFlavor1",
+            #         "size": "UpdateSize1",
+            #         "rating": 1,
+            #         "image": "http://test.com/cupcake3.jpg"
+            #     }
+            # })
